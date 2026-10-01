@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-public/
+.cache/
+*.log
+*.tsbuildinfo
+test-results/

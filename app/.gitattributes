@@ -1,0 +1,8 @@
+* text eol=lf
+public/assets/*.glb -text -diff
+*.png -text -diff
+public/assets/*.ttf -text -diff
+public/assets/*LICENSE* -text -diff
+public/assets/*OFL* -text -diff
+public/assets/*license* -text -diff
+src/data/fixture.json -diff

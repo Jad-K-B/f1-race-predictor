@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+  sharp: false
+verifyDepsBeforeRun: false
+overrides:
+  sharp: 0.35.4

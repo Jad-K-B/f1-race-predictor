@@ -1,0 +1,3 @@
+# Requirements for Stage 2A
+
+pandas==3.0.1

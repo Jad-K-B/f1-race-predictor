@@ -1,0 +1,26 @@
+{
+  "retrieved_at": "2026-09-27T18:28:57.103Z",
+  "url": "https://raw.githubusercontent.com/filan214/F1---2026-Car-Details/71fafa72b34bfbed07a01d8bc93b969246e7b4e2/dist/models/qvist-2026-assemblies.glb",
+  "revision": "71fafa72b34bfbed07a01d8bc93b969246e7b4e2",
+  "source_sha256": "bff9c92fe22e1c80c855e24e95b09eca62f579640fe63be200aff83769d059d3",
+  "title": "F1 2026 concept (polygon model)",
+  "creator": "Qvist_designs",
+  "license": {
+    "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+    "label": "CC Attribution",
+    "fullName": "Creative Commons Attribution",
+    "requirements": "Author must be credited. Commercial use is allowed.",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "slug": "by"
+  },
+  "author_url": "https://sketchfab.com/3d-models/f1-2026-concept-polygon-model-ea3bde709b1e4dc9b0ec8557d106ed42",
+  "changes": "Prepared geometry by filan214; FORMATION simplifies, welds, quantizes and meshopt-compresses geometry. Runtime custom silver, carbon and chartreuse materials. Independent concept, not official team CAD.",
+  "output_sha256": "7571f78b743be14707eec688c2778a4455a62eddb72c47bbf508d5f00daf6091",
+  "output_bytes": 1520196,
+  "optimization": {
+    "ratio": 0.28,
+    "error": 0.001,
+    "meshopt": "0.22.0",
+    "gltf_transform": "4.1.3"
+  }
+}

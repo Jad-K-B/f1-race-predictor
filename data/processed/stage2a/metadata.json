@@ -1,0 +1,287 @@
+{
+  "stage": "2A",
+  "prediction_timestamp": "after final grid confirmation and before race start",
+  "configuration": {
+    "start_year": 2014,
+    "end_year": 2025,
+    "train_end_year": 2022,
+    "validation_year": 2023,
+    "test_start_year": 2024
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "pandas": "3.0.1"
+  },
+  "dataset": {
+    "file": "race_features.csv",
+    "sha256": "4e9146eab21280f5151ead48c66949c48f318e36fbdbe897c5bba49d076fd59a",
+    "rows": 5108,
+    "columns": 159,
+    "races": 252,
+    "drivers": 62,
+    "feature_count": 147,
+    "target_count": 4
+  },
+  "eligibility": {
+    "audit_file": "eligibility_audit.json",
+    "audited_records": 6,
+    "eligible_rows": 5102,
+    "ineligible_rows": 6,
+    "policy": "A missing F1DB final-grid record never determines eligibility by itself. Every such row requires a documented contemporaneous decision."
+  },
+  "splits": {
+    "train": {
+      "rows": 3709,
+      "eligible_rows": 3704,
+      "races": 182,
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ]
+    },
+    "validation": {
+      "rows": 440,
+      "eligible_rows": 439,
+      "races": 22,
+      "years": [
+        2023
+      ]
+    },
+    "test": {
+      "rows": 959,
+      "eligible_rows": 959,
+      "races": 48,
+      "years": [
+        2024,
+        2025
+      ]
+    }
+  },
+  "split_files": {
+    "train": "train.csv",
+    "validation": "validation.csv",
+    "test": "test.csv"
+  },
+  "missing_feature_values": {
+    "qualifying_position": 95,
+    "qualifying_position_normalized": 95,
+    "final_grid_position": 121,
+    "effective_grid_position": 6,
+    "grid_position_normalized": 6,
+    "grid_delta_from_qualifying": 99,
+    "qualifying_laps": 27,
+    "q1_pct_off_best": 72,
+    "q2_pct_off_best": 1363,
+    "q3_pct_off_best": 2655,
+    "current_constructor_avg_grid": 2,
+    "current_constructor_best_grid": 2,
+    "current_constructor_avg_qualifying": 18,
+    "grid_delta_to_constructor_avg": 6,
+    "qualifying_delta_to_constructor_avg": 95,
+    "driver_career_avg_finish": 53,
+    "driver_career_points_per_start": 41,
+    "driver_career_points_finish_rate": 41,
+    "driver_career_podium_rate": 41,
+    "driver_career_win_rate": 41,
+    "driver_career_dnf_rate": 41,
+    "driver_season_avg_finish": 340,
+    "driver_season_points_finish_rate": 268,
+    "driver_season_podium_rate": 268,
+    "driver_season_win_rate": 268,
+    "driver_season_dnf_rate": 268,
+    "driver_previous_finish": 798,
+    "driver_previous_points": 41,
+    "driver_previous_grid": 159,
+    "driver_previous_qualifying": 136,
+    "driver_circuit_avg_finish": 1181,
+    "driver_circuit_points_finish_rate": 1047,
+    "driver_circuit_podium_rate": 1047,
+    "driver_circuit_win_rate": 1047,
+    "driver_circuit_dnf_rate": 1047,
+    "driver_constructor_avg_finish": 138,
+    "driver_constructor_points_per_start": 108,
+    "driver_constructor_points_finish_rate": 108,
+    "driver_constructor_podium_rate": 108,
+    "driver_constructor_win_rate": 108,
+    "driver_constructor_dnf_rate": 108,
+    "driver_championship_position_pre_race": 340,
+    "driver_previous_season_position": 783,
+    "driver_previous_season_points": 783,
+    "constructor_career_points_per_race": 16,
+    "constructor_career_points_finish_rate": 16,
+    "constructor_career_podiums_per_race": 16,
+    "constructor_career_wins_per_race": 16,
+    "constructor_career_dnf_rate": 16,
+    "constructor_career_avg_finish": 16,
+    "constructor_season_points_per_race": 244,
+    "constructor_season_points_finish_rate": 244,
+    "constructor_season_podiums_per_race": 244,
+    "constructor_season_wins_per_race": 244,
+    "constructor_season_dnf_rate": 244,
+    "constructor_championship_position_pre_race": 260,
+    "constructor_previous_season_position": 476,
+    "constructor_previous_season_points": 476,
+    "circuit_historical_dnf_rate": 163,
+    "circuit_historical_avg_positions_gained": 163,
+    "circuit_historical_pole_win_rate": 163,
+    "circuit_historical_avg_winner_grid": 163,
+    "driver_recent_3_avg_finish": 68,
+    "driver_recent_3_points_per_start": 41,
+    "driver_recent_3_points_finish_rate": 41,
+    "driver_recent_3_podium_rate": 41,
+    "driver_recent_3_win_rate": 41,
+    "driver_recent_3_dnf_rate": 41,
+    "driver_recent_3_avg_grid": 42,
+    "driver_recent_3_avg_qualifying": 43,
+    "constructor_recent_3_points_per_race": 16,
+    "constructor_recent_3_podiums_per_race": 16,
+    "constructor_recent_3_wins_per_race": 16,
+    "constructor_recent_3_dnf_rate": 16,
+    "constructor_recent_3_avg_finish": 16,
+    "constructor_recent_3_avg_grid": 16,
+    "constructor_recent_3_avg_qualifying": 16,
+    "driver_recent_5_avg_finish": 53,
+    "driver_recent_5_points_per_start": 41,
+    "driver_recent_5_points_finish_rate": 41,
+    "driver_recent_5_podium_rate": 41,
+    "driver_recent_5_win_rate": 41,
+    "driver_recent_5_dnf_rate": 41,
+    "driver_recent_5_avg_grid": 42,
+    "driver_recent_5_avg_qualifying": 43,
+    "constructor_recent_5_points_per_race": 16,
+    "constructor_recent_5_podiums_per_race": 16,
+    "constructor_recent_5_wins_per_race": 16,
+    "constructor_recent_5_dnf_rate": 16,
+    "constructor_recent_5_avg_finish": 16,
+    "constructor_recent_5_avg_grid": 16,
+    "constructor_recent_5_avg_qualifying": 16,
+    "driver_recent_10_avg_finish": 53,
+    "driver_recent_10_points_per_start": 41,
+    "driver_recent_10_points_finish_rate": 41,
+    "driver_recent_10_podium_rate": 41,
+    "driver_recent_10_win_rate": 41,
+    "driver_recent_10_dnf_rate": 41,
+    "driver_recent_10_avg_grid": 42,
+    "driver_recent_10_avg_qualifying": 43,
+    "constructor_recent_10_points_per_race": 16,
+    "constructor_recent_10_podiums_per_race": 16,
+    "constructor_recent_10_wins_per_race": 16,
+    "constructor_recent_10_dnf_rate": 16,
+    "constructor_recent_10_avg_finish": 16,
+    "constructor_recent_10_avg_grid": 16,
+    "constructor_recent_10_avg_qualifying": 16
+  },
+  "feature_temporal_scope_counts": {
+    "known_before_race_start": 3,
+    "known_before_event": 12,
+    "static_or_race_date_derived": 4,
+    "current_race_pre_start": 23,
+    "strictly_prior_races": 97,
+    "strictly_prior_race": 4,
+    "strictly_prior_season": 4
+  },
+  "unseen_categories_relative_to_train": {
+    "validation": {
+      "driver_id": [
+        "liam-lawson",
+        "logan-sargeant",
+        "oscar-piastri"
+      ],
+      "engine_manufacturer_id": [
+        "honda-rbpt"
+      ],
+      "grand_prix_id": [
+        "las-vegas"
+      ],
+      "circuit_id": [
+        "las-vegas"
+      ],
+      "circuit_layout_id": [
+        "catalunya-6",
+        "las-vegas-1",
+        "marina-bay-4"
+      ]
+    },
+    "test": {
+      "driver_id": [
+        "franco-colapinto",
+        "gabriel-bortoleto",
+        "isack-hadjar",
+        "jack-doohan",
+        "kimi-antonelli",
+        "liam-lawson",
+        "logan-sargeant",
+        "oliver-bearman",
+        "oscar-piastri"
+      ],
+      "constructor_id": [
+        "kick-sauber",
+        "racing-bulls",
+        "rb"
+      ],
+      "engine_manufacturer_id": [
+        "honda-rbpt"
+      ],
+      "grand_prix_id": [
+        "las-vegas"
+      ],
+      "circuit_id": [
+        "las-vegas"
+      ],
+      "circuit_layout_id": [
+        "catalunya-6",
+        "las-vegas-1",
+        "marina-bay-4"
+      ],
+      "driver_nationality_country_id": [
+        "argentina"
+      ]
+    }
+  },
+  "preprocessing_contract": {
+    "model_input_allowlist": "FEATURE_COLUMNS only",
+    "fit_preprocessors_on": "train",
+    "transform_only": [
+      "validation",
+      "test"
+    ],
+    "fit_hyperparameters_on": [
+      "train",
+      "validation"
+    ],
+    "fit_probability_calibration_on": "validation",
+    "final_evaluation_only": "test",
+    "categorical_unknown_policy": "must handle unseen categories without refitting",
+    "missing_value_policy": "imputers must be fit on train only",
+    "sequential_backtest_note": "Validation and test features may use outcomes of earlier completed races in the same split, because those outcomes are known before each later race; they never use the current or a future race outcome."
+  },
+  "source_files_sha256": {
+    "f1db-races.csv": "87347711d72d6c188e9b58da028dc2d96069d740c4c3c17d4405902cfe298721",
+    "f1db-races-race-results.csv": "39d6cc0b180564defeab973840d83532e80358fee930fc37bcb4a03854584cf5",
+    "f1db-races-starting-grid-positions.csv": "dd14ff71eb6a6f31a37d2c743dcf4763a11b6f37552572905d33b1fe980a69f8",
+    "f1db-races-qualifying-results.csv": "ae26055bcc81c69d27595517a2b1ffb9115547ad3388f8a5d87d0b505fe35434",
+    "f1db-races-driver-standings.csv": "af485fa81d4d70d554191e1f24b5a52ee77591eb74e58a9484c2ab7c90f6c8ba",
+    "f1db-races-constructor-standings.csv": "86d5d71a1ffd6faad81bb3ffac05f0bed8a4099b5f4e471566b3abf886b08f12",
+    "f1db-drivers.csv": "80acf8ef6ae2eb57ebc1e2da372d9620aae1b90302a385d20a821b724bbbe7e5",
+    "f1db-circuits.csv": "815311d76ee021520a8702b7b6b785f18ac7b37aaaa97c891518309cb84b654f"
+  },
+  "source_normalization": [
+    "Shared-car-era duplicate driver/race result rows are collapsed to one appearance using the best classified record, with credited points summed.",
+    "Duplicate qualifying rows are collapsed by official display order; the final-grid table remains authoritative for the start position."
+  ],
+  "known_limitations": [
+    "Weather, safety-car expectations, and live market data are not present in F1DB.",
+    "Some official entries have no final-grid or qualifying record; indicators and missing values are retained.",
+    "Prediction eligibility for missing final-grid records depends on a manually reviewed contemporaneous evidence audit.",
+    "Pit-lane starters have no numeric final-grid slot and receive an effective slot after the confirmed grid.",
+    "Historical and rookie features are naturally missing when no prior observation exists.",
+    "Points-finish follows awarded official race points, so it is not hard-coded to finishing position <= 10."
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "prediction_timestamp": "after the final starting field is known and before the race starts",
+  "policy": "A missing F1DB final-grid record never determines eligibility by itself. Every such row requires a documented contemporaneous decision.",
+  "records": [
+    {
+      "race_id": 917,
+      "year": 2015,
+      "round": 1,
+      "grand_prix": "Australian Grand Prix",
+      "driver_id": "valtteri-bottas",
+      "result_status": "DNS",
+      "prediction_eligible": false,
+      "reason": "Declared medically unfit after the FIA medical assessment on race morning; the published grid was adjusted before the start.",
+      "source_url": "https://www.formula1.com/en/latest/article/bottas-awaiting-fia-clearance-to-race-after-back-injury.6DaGSZNox3TR98s0tbZJtU/"
+    },
+    {
+      "race_id": 917,
+      "year": 2015,
+      "round": 1,
+      "grand_prix": "Australian Grand Prix",
+      "driver_id": "will-stevens",
+      "result_status": "DNP",
+      "prediction_eligible": false,
+      "reason": "Manor Marussia did not run the car during the event because of software problems and did not qualify it for the race.",
+      "source_url": "https://www.formula1.com/en/latest/article/winners-and-losers-the-australian-grand-prix.25r22GSjGljdejJl4AYL9U"
+    },
+    {
+      "race_id": 917,
+      "year": 2015,
+      "round": 1,
+      "grand_prix": "Australian Grand Prix",
+      "driver_id": "roberto-merhi",
+      "result_status": "DNP",
+      "prediction_eligible": false,
+      "reason": "Manor Marussia did not run the car during the event because of software problems and did not qualify it for the race.",
+      "source_url": "https://www.formula1.com/en/latest/article/winners-and-losers-the-australian-grand-prix.25r22GSjGljdejJl4AYL9U"
+    },
+    {
+      "race_id": 1057,
+      "year": 2021,
+      "round": 22,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "driver_id": "nikita-mazepin",
+      "result_status": "DNS",
+      "prediction_eligible": false,
+      "reason": "Withdrew before the race after a positive COVID-19 test; Formula 1 stated that he would take no further part in the event.",
+      "source_url": "https://corp.formula1.com/statement-on-covid-19-test-result-for-nikita-mazepin/"
+    },
+    {
+      "race_id": 1059,
+      "year": 2022,
+      "round": 2,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "driver_id": "mick-schumacher",
+      "result_status": "DNS",
+      "prediction_eligible": false,
+      "reason": "Haas confirmed after qualifying that he would not start following his qualifying accident.",
+      "source_url": "https://www.formula1.com/en/latest/article/schumacher-ruled-out-of-saudi-arabian-gp-after-qualifying-crash.3XdBF5qtBjRysU2gVz4Lw4"
+    },
+    {
+      "race_id": 1094,
+      "year": 2023,
+      "round": 15,
+      "grand_prix": "Singapore Grand Prix",
+      "driver_id": "lance-stroll",
+      "result_status": "DNS",
+      "prediction_eligible": false,
+      "reason": "Aston Martin withdrew him from Sunday's race before the start following his qualifying accident.",
+      "source_url": "https://www.formula1.com/en/latest/article/sainz-holds-off-norris-and-fast-charging-mercedes-pair-to-take-sensational.16sNsRUz2MAFyXxSE3RdwX"
+    }
+  ]
+}

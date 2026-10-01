@@ -1,0 +1,8 @@
+*.gitattributes -text
+*.py -text
+*.ipynb -text
+data/**/*.csv -text whitespace=-trailing-space
+data/processed/stage2a/*.json -text
+artifacts/** -text whitespace=-trailing-space
+config/** -text
+requirements-stage2b-external.txt -text

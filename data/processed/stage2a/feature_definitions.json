@@ -1,0 +1,1235 @@
+{
+  "prediction_timestamp": "after final grid confirmation and before race start",
+  "targets": {
+    "points_finish": "1 when official race-result points are greater than zero",
+    "podium_finish": "1 when official numeric finishing position is 1, 2, or 3",
+    "race_winner": "1 when official numeric finishing position is 1",
+    "finish_order": "Official display order re-ranked contiguously within drivers eligible at the prediction timestamp; lower is better and DNF/DSQ/NC remain ranked."
+  },
+  "outcome_metadata": {
+    "classified_finish_position": "Nullable official numeric classification; diagnostic only because DNF/DNS/DNP records can be unclassified.",
+    "result_status": "Official result status such as a position, DNF, DNS, DNP, DSQ, or NC.",
+    "prediction_eligible": "1 only when the driver belonged to the field at the prediction timestamp.",
+    "eligibility_reason": "Documented basis for the eligibility decision.",
+    "eligibility_source": "F1DB grid source or external contemporaneous evidence URL."
+  },
+  "eligibility_policy": "Missing final-grid data is never itself evidence of ineligibility; every missing record requires an explicit timestamp-based audit decision.",
+  "features": [
+    {
+      "name": "driver_id",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB final-grid or qualifying entry metadata; result metadata is identity-only fallback",
+      "temporal_scope": "known_before_race_start",
+      "definition": "Driver id known before race start."
+    },
+    {
+      "name": "constructor_id",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB final-grid or qualifying entry metadata; result metadata is identity-only fallback",
+      "temporal_scope": "known_before_race_start",
+      "definition": "Constructor id known before race start."
+    },
+    {
+      "name": "engine_manufacturer_id",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB final-grid or qualifying entry metadata; result metadata is identity-only fallback",
+      "temporal_scope": "known_before_race_start",
+      "definition": "Engine manufacturer id known before race start."
+    },
+    {
+      "name": "grand_prix_id",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Grand prix id known before race start."
+    },
+    {
+      "name": "circuit_id",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Circuit id known before race start."
+    },
+    {
+      "name": "circuit_layout_id",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Circuit layout id known before race start."
+    },
+    {
+      "name": "circuit_type",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Circuit type known before race start."
+    },
+    {
+      "name": "circuit_direction",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Circuit direction known before race start."
+    },
+    {
+      "name": "qualifying_format",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Qualifying format known before race start."
+    },
+    {
+      "name": "driver_nationality_country_id",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB driver and circuit registries",
+      "temporal_scope": "static_or_race_date_derived",
+      "definition": "Driver nationality country id known before race start."
+    },
+    {
+      "name": "circuit_country_id",
+      "role": "categorical_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB driver and circuit registries",
+      "temporal_scope": "static_or_race_date_derived",
+      "definition": "Circuit country id known before race start."
+    },
+    {
+      "name": "year",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Season of the predicted race."
+    },
+    {
+      "name": "round",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Championship round of the predicted race."
+    },
+    {
+      "name": "race_month",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Calendar month of the predicted race."
+    },
+    {
+      "name": "course_length_km",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Published circuit lap length for the event."
+    },
+    {
+      "name": "circuit_turns",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "Published number of circuit turns for the event."
+    },
+    {
+      "name": "is_sprint_weekend",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB race schedule and circuit metadata",
+      "temporal_scope": "known_before_event",
+      "definition": "1 when the event schedule includes a sprint session."
+    },
+    {
+      "name": "driver_age_years",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB driver and circuit registries",
+      "temporal_scope": "static_or_race_date_derived",
+      "definition": "Driver age on race day."
+    },
+    {
+      "name": "is_driver_home_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB driver and circuit registries",
+      "temporal_scope": "static_or_race_date_derived",
+      "definition": "1 when driver nationality and circuit country match."
+    },
+    {
+      "name": "qualifying_position",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Official qualifying rank available before the race."
+    },
+    {
+      "name": "qualifying_position_normalized",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Qualifying rank divided by confirmed grid field size."
+    },
+    {
+      "name": "final_grid_position",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Numeric final starting-grid slot; missing for pit-lane/non-starters."
+    },
+    {
+      "name": "effective_grid_position",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Final grid slot with pit-lane starts placed after the grid."
+    },
+    {
+      "name": "grid_position_normalized",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Effective grid slot divided by confirmed grid field size."
+    },
+    {
+      "name": "grid_delta_from_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Effective grid slot minus qualifying rank."
+    },
+    {
+      "name": "grid_penalty_positions",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Published numeric grid penalty, with no penalty encoded as zero."
+    },
+    {
+      "name": "has_grid_penalty",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "1 when the final-grid file records a grid penalty."
+    },
+    {
+      "name": "pit_lane_start",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "1 when the confirmed start is from the pit lane."
+    },
+    {
+      "name": "missing_final_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "1 when no numeric final-grid slot is available."
+    },
+    {
+      "name": "qualifying_laps",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Laps recorded in the qualifying result."
+    },
+    {
+      "name": "reached_q2",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "1 when a Q2 time is recorded."
+    },
+    {
+      "name": "reached_q3",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "1 when a Q3 time is recorded."
+    },
+    {
+      "name": "q1_pct_off_best",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Q1 milliseconds above the session best, divided by the best."
+    },
+    {
+      "name": "q2_pct_off_best",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Q2 milliseconds above the session best, divided by the best."
+    },
+    {
+      "name": "q3_pct_off_best",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Q3 milliseconds above the session best, divided by the best."
+    },
+    {
+      "name": "grid_field_size",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Number of numeric slots in the confirmed starting grid."
+    },
+    {
+      "name": "current_constructor_entry_count",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Current constructor entry count."
+    },
+    {
+      "name": "current_constructor_avg_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Current constructor avg grid."
+    },
+    {
+      "name": "current_constructor_best_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Current constructor best grid."
+    },
+    {
+      "name": "current_constructor_avg_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Current constructor avg qualifying."
+    },
+    {
+      "name": "grid_delta_to_constructor_avg",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Grid delta to constructor avg."
+    },
+    {
+      "name": "qualifying_delta_to_constructor_avg",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB qualifying and final starting-grid records",
+      "temporal_scope": "current_race_pre_start",
+      "definition": "Qualifying delta to constructor avg."
+    },
+    {
+      "name": "driver_prior_entries",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Number of earlier official result entries for the driver, including DNS/DNP records."
+    },
+    {
+      "name": "driver_prior_classified_finishes",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver prior classified finishes, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_career_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver career avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_career_points_per_start",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver career points per start, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_career_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver career points finish rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_career_podium_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver career podium rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_career_win_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver career win rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_career_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver career dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_season_prior_entries",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Earlier official result entries for the driver in the current season."
+    },
+    {
+      "name": "driver_season_prior_points",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver season prior points, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_season_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver season avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_season_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver season points finish rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_season_podium_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver season podium rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_season_win_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver season win rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_season_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver season dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_previous_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver previous finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_previous_points",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver previous points, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_previous_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver previous grid, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_previous_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver previous qualifying, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_circuit_prior_entries",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Earlier official result entries for the driver at the circuit."
+    },
+    {
+      "name": "driver_circuit_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver circuit avg finish."
+    },
+    {
+      "name": "driver_circuit_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver circuit points finish rate."
+    },
+    {
+      "name": "driver_circuit_podium_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver circuit podium rate."
+    },
+    {
+      "name": "driver_circuit_win_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver circuit win rate."
+    },
+    {
+      "name": "driver_circuit_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver circuit dnf rate."
+    },
+    {
+      "name": "driver_constructor_prior_entries",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Earlier official result entries for the driver-constructor pairing."
+    },
+    {
+      "name": "driver_constructor_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver constructor avg finish."
+    },
+    {
+      "name": "driver_constructor_points_per_start",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver constructor points per start."
+    },
+    {
+      "name": "driver_constructor_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver constructor points finish rate."
+    },
+    {
+      "name": "driver_constructor_podium_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver constructor podium rate."
+    },
+    {
+      "name": "driver_constructor_win_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver constructor win rate."
+    },
+    {
+      "name": "driver_constructor_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver constructor dnf rate."
+    },
+    {
+      "name": "driver_championship_position_pre_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB standings after the previous completed race",
+      "temporal_scope": "strictly_prior_race",
+      "definition": "Official driver standing after the previous race in the same season."
+    },
+    {
+      "name": "driver_championship_points_pre_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB standings after the previous completed race",
+      "temporal_scope": "strictly_prior_race",
+      "definition": "Official driver points after the previous race; zero before round one or a debut."
+    },
+    {
+      "name": "driver_previous_season_position",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB standings after the previous season finale",
+      "temporal_scope": "strictly_prior_season",
+      "definition": "Driver previous season position, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_previous_season_points",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB standings after the previous season finale",
+      "temporal_scope": "strictly_prior_season",
+      "definition": "Driver previous season points, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_prior_races",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor prior races, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_prior_entries",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Earlier official driver entries for the constructor."
+    },
+    {
+      "name": "constructor_career_points_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor career points per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_career_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor career points finish rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_career_podiums_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor career podiums per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_career_wins_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor career wins per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_career_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor career dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_career_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor career avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_season_prior_races",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor season prior races, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_season_prior_points",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor season prior points, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_season_points_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor season points per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_season_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor season points finish rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_season_podiums_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor season podiums per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_season_wins_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor season wins per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_season_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor season dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_championship_position_pre_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB standings after the previous completed race",
+      "temporal_scope": "strictly_prior_race",
+      "definition": "Official constructor standing after the previous race in the same season."
+    },
+    {
+      "name": "constructor_championship_points_pre_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB standings after the previous completed race",
+      "temporal_scope": "strictly_prior_race",
+      "definition": "Official constructor points after the previous race; zero before round one."
+    },
+    {
+      "name": "constructor_previous_season_position",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB standings after the previous season finale",
+      "temporal_scope": "strictly_prior_season",
+      "definition": "Constructor previous season position, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_previous_season_points",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "F1DB standings after the previous season finale",
+      "temporal_scope": "strictly_prior_season",
+      "definition": "Constructor previous season points, calculated from completed earlier races only."
+    },
+    {
+      "name": "circuit_prior_races",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted circuit aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Number of earlier races at the circuit in F1DB history."
+    },
+    {
+      "name": "circuit_historical_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted circuit aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Mean DNF rate at the circuit over earlier races only."
+    },
+    {
+      "name": "circuit_historical_avg_positions_gained",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted circuit aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Mean positions gained at the circuit over earlier races only."
+    },
+    {
+      "name": "circuit_historical_pole_win_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted circuit aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Share of earlier circuit races won from pole."
+    },
+    {
+      "name": "circuit_historical_avg_winner_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted circuit aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Mean winner grid slot at the circuit over earlier races."
+    },
+    {
+      "name": "driver_recent_3_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 3 avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_3_points_per_start",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 3 points per start, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_3_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 3 points finish rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_3_podium_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 3 podium rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_3_win_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 3 win rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_3_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 3 dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_3_avg_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 3 avg grid, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_3_avg_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 3 avg qualifying, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_3_points_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 3 points per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_3_podiums_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 3 podiums per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_3_wins_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 3 wins per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_3_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 3 dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_3_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 3 avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_3_avg_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 3 avg grid, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_3_avg_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 3 avg qualifying, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_5_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 5 avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_5_points_per_start",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 5 points per start, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_5_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 5 points finish rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_5_podium_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 5 podium rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_5_win_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 5 win rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_5_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 5 dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_5_avg_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 5 avg grid, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_5_avg_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 5 avg qualifying, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_5_points_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 5 points per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_5_podiums_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 5 podiums per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_5_wins_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 5 wins per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_5_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 5 dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_5_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 5 avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_5_avg_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 5 avg grid, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_5_avg_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 5 avg qualifying, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_10_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 10 avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_10_points_per_start",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 10 points per start, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_10_points_finish_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 10 points finish rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_10_podium_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 10 podium rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_10_win_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 10 win rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_10_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 10 dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_10_avg_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 10 avg grid, calculated from completed earlier races only."
+    },
+    {
+      "name": "driver_recent_10_avg_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted official results from earlier driver entries",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Driver recent 10 avg qualifying, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_10_points_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 10 points per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_10_podiums_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 10 podiums per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_10_wins_per_race",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 10 wins per race, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_10_dnf_rate",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 10 dnf rate, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_10_avg_finish",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 10 avg finish, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_10_avg_grid",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 10 avg grid, calculated from completed earlier races only."
+    },
+    {
+      "name": "constructor_recent_10_avg_qualifying",
+      "role": "numeric_feature",
+      "availability": "after_final_grid_before_race",
+      "source": "Shifted constructor race aggregates from earlier races",
+      "temporal_scope": "strictly_prior_races",
+      "definition": "Constructor recent 10 avg qualifying, calculated from completed earlier races only."
+    }
+  ],
+  "preprocessing_contract": {
+    "model_input_allowlist": "FEATURE_COLUMNS only",
+    "fit_preprocessors_on": "train",
+    "transform_only": [
+      "validation",
+      "test"
+    ],
+    "fit_hyperparameters_on": [
+      "train",
+      "validation"
+    ],
+    "fit_probability_calibration_on": "validation",
+    "final_evaluation_only": "test",
+    "categorical_unknown_policy": "must handle unseen categories without refitting",
+    "missing_value_policy": "imputers must be fit on train only",
+    "sequential_backtest_note": "Validation and test features may use outcomes of earlier completed races in the same split, because those outcomes are known before each later race; they never use the current or a future race outcome."
+  },
+  "forbidden_current_race_outcome_features": [
+    "classified_finish_position",
+    "driver_of_the_day",
+    "eligibility_reason",
+    "eligibility_source",
+    "fastest_lap",
+    "finish_order",
+    "finish_position",
+    "grand_slam",
+    "laps_completed",
+    "pit_stops",
+    "position_number",
+    "position_text",
+    "positions_gained",
+    "prediction_eligible",
+    "race_gap",
+    "race_interval",
+    "race_points",
+    "race_time",
+    "race_time_millis",
+    "reason_retired",
+    "result_status"
+  ]
+}

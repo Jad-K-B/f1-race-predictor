@@ -1,0 +1,38 @@
+__pycache__/
+*.py[cod]
+.venv/
+.venv-stage2b/
+.pnpm-store/
+venv/
+.env
+
+.ipynb_checkpoints/
+
+.vscode/
+.DS_Store
+Thumbs.db
+
+*.pkl
+*.joblib
+!artifacts/stage3/releases/frozen-v2/**/*.joblib
+
+# Rebuilt locally for upload to an approved external validation runtime.
+artifacts/stage2b/colab/*
+
+# Append-only downloaded payloads remain local; manifests/forecast reports are versioned.
+data/stage3/cache/
+# Private portable source evidence is not cleared for public redistribution.
+data/stage3/evidence-private/
+
+# Public source checkout: never add raw event evidence or private forecast archives.
+data/stage3/incoming/
+data/stage3/reviews/
+artifacts/stage3/forecasts/
+artifacts/stage3/reports/
+app/public/assets/identity/2023/
+app/qa/
+
+# Versioned Stage 3 source archives are retained; expanded working copies and
+# PDF rendering intermediates are reproducible and remain local.
+data/stage3/incoming/**/csv/
+tmp/

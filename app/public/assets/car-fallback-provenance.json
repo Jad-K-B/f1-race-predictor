@@ -1,0 +1,26 @@
+{
+  "source": "formation-car.glb",
+  "source_sha256": "7571f78b743be14707eec688c2778a4455a62eddb72c47bbf508d5f00daf6091",
+  "outputs": [
+    {
+      "file": "car-fallback.png",
+      "sha256": "da94fe95a7aa32cf60d24e1f2c9464a6c8b2004a26f4a52cc7f3c8165e947246",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "car-fallback-mobile.png",
+      "sha256": "a51a5785c3cc978eba094b9b5e2542ca68771be6a5d690cbf29fb050ba92168a",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "created_at": "2026-09-28T06:56:36.519Z",
+  "description": "Rendered from the application's licensed Qvist_designs geometry and existing materials at the default camera, with reduced motion and no UI overlays.",
+  "creator": "Qvist_designs (geometry); project rendering",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}
